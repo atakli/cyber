@@ -1,0 +1,168 @@
+DoS: Denial of Service
+DDoS
+Phishing: mesela facebook'tan geliyor gibi görünen bir mail ve tıklanan bir linkle açılan sitede istenen login
+SQL Injections: hiçbişey anlamadım
+VPN: Virtual Private Network: kendi ip'in yerine başka bir ip'yi bağlanmak istenilern siteye gönderir
+Proxy: 'same thing'
+Tor: seninle bağlanmak istediğin makinenin arasına layerlar ekler. hacking ile uğraştığın zaman useful'dur
+VPS: Virtual Private Server: Like having a hosting account
+Key Logger
+Firewall: malicious activity'si olann website'ları tespit edip oraya girmeni engeller
+cd /bin: en dipteki klasörlere direk böyle ulaşabilirsin
+clear: cls gibi
+cd ../root/Documents: root'tayken yaptı bunu
+~: means my home directory
+ls -l: more information about the directory: permissions, owner's user account, owner's group account, size, time that it was last
+... modified
+ls -a: shows everything. all items in the directory
+ls Downloads: wihtout having to go to that directory
+in linux, you can hide a directory or a file by preceding the name of it with a dot. ve file manager'da da görünmez. show hidden
+... files'ı seçmezsen tabi
+pwd: print working directory
+touch log.txt
+cp log.txt Downloads/log1.txt
+cp log.txt Downloads: it's gonna retain the original name
+mv  log.txt Documents
+cp -r Downloads Documents: flag olmazsa olmaz. -r içindeki contenti ile beraber demek
+nano random.txt
+cat random.txt: prints out the content of it to the terminal
+cat random.txt > r1.txt: essentially copying
+more random.txt:in default mode, does the same thing as cat
+less random.txt: print etti ama sanki nano gibi yeni pencere açarak, yani diğer command'leri görünmez yaparak, başka session'a geçerek
+ls ~/ | grep "Documents": | işareti pipeline yapmaya yarıyo. kendisinden öncekini sonrakine pipe ediyo, input olarak aktarıyo
+... grep arama için
+ps aux: all of the running files
+ps aux | grep "bash": içinde 'bash' geçen running file'ları listeliyo sadece
+echo Hi: prints sth out
+echo "Hello World" > f.txt: windows ile aynı.
+export NAME="Nick"	# sayı da oluyo
+echo $NAME 
+mkdir SECRET
+useradd nick 
+chown nick r1.txt: change ownership. you can also change the group:
+groups # root
+groupadd nick # group 'nick' already exists
+chown nick:nick r1.txt
+# permissions don't explicitly say 'they can'
+-rw-r--r--: (permissions'larda) owner can read,write. (x de olsaydı execute da olacaktı). group can read. any other user 
+... (general public) can read
+chmod 646 r1.txt # 6: all permissions: read and write. 4: read. bu kodla read and write access'ine izim vermiş olduk
+chmod 747 r1.txt # 7: read and write and execute
+# in kali linux, green means you can execute file
+# never do 777. realy realy bad idea. 
+rm r1.txt: easiest malware to write in linux. You need to be careful about this commmand
+rm -r SECRET: # rf: recursive enforce
+!!! deletes all linux installation: rm -rf / 	# BE CAREFUL!!!
+# be very careful when you're working as root
+man grep: manual. detailed. very.
+# root account'u normal account olarak kullanmak not recommended
+adduser test
+usermod -aG sudo test # this tells it what group you wanna add it to: here.
+önce sudo deyince şifre soruyodu, bunu yapınca sormayı bıraktı
+su test # to switch to test user
+su # to switch back to root user (switch user demek)
+setxkbmap tr # klavyeyi türkçe yapmak için
+xfce4-settings-manager settings. ordan keyboard shortcuts'ı açmıştım
+xfce4-taskmanager
+sudo -v. if no error occurs, you're good to go. (Super User DO demek)
+alt + sysrq, sonra elini kaldırmadan teker teker şu tuşlar: r e i s u b: reboot. off için son harfi o
+apt-get install tor -> eğer root değilsen yapmaz
+diyelim root değildin, çalıştırınca hata verdi yapmadı, sonra sudo deyip !! diyorsun. denden manasında
+sudo apt-get remove tor: conf files kalır. onları da kaldırayım dersen: purge
+when that package version get updated, we don't get notified of that automatically. bunun için bişey yüklemeden önce:
+sudo apt-get update
+ondan sonra sudo apt-get upgrade dersen eski paketleri günceller. iso'daki 
+bişey yüklerken başka bi terminal açıp apt'i çaıştıramam. in order to make sure not install two different things at the same
+time. it would mess each other
+apt-cache policy tor: available package version ve yüklü olup olmadığını gösteriyo. aşağıdakiler de geldği mirror/'lar
+ayrıca sonuna paket ismine bitişik bi şekilde * koyunca başka bi çıktı veriyo ama anlamadım
+apt-cache policy firefox yazınca firefox yüklü olduğu halde none dedi. * koyunca çıktı verdi. package managerle 
+yüklenmemiş mi ne öyle bişey dedi bu durumla ilgili
+sensors
+watch sensors
+bunu kurarken sensors-detect yerine: yes yes | sensors-detect deseymişim onca soruya tek tek evet demeye gerek yokmuş
+which tor deyince nereye yüklendiğini söyledi
+tar -xvf tar_dosyasının_ismi to untar a archieve file
+ls yapınca .desktop uzantılı dosyanın yeşil olduğunu görünce executable demekki dedi. sonra ls -l ile teyid etti 
+birinde de drwx yazıyodu: directory demekmiş
+internetten browser ile elle indirdiği torbrowser-launcher'ı (çünkü candidate yoktu, policy komutuyla anladı onu, o yüzden
+elle indirdi) untar edip setup'a tıklayınca root ile çalıştırılamaz gibi bişey dedi. o da ek user oluşturdu
+çünkü test dediği user root access'e sahip galiba (veya o önceki vidyodaydı, şimdi test diye bi user olmayabilir)
+sudo ls diye sudo access'im var mı yok mu diye baktı, yokmuş. zaten ilk başta olmazmış, user oluşturulduğunda
+gidip sudoer file'a yeni entry eklemek lazım dedi: adduser test1 sudo (tabi bunu roottayken yaptık)
+icanhazip.com: firefox ile bağlanınca ip v4'ü tor ile ip v6'yı verdi. ip v6 garip görünüyodu
+python'da tor kullanarak back end api yazmış. to protect the identity of the server while scraping webpage
+sock is like local proxy
+netstat -tupln deyince bende bişey çıkmadı. tor'u başlatmadığım için olabilir. tutorial'da tcp ve udp diye iki şey çıktı
+tcp de 127.0.0.1:9050 yazıyodu. dedi ki 9050 portunda çalışıyo. tor is currently running, which is awesome
+sonra onu kullaarak python'da toru kuıllanmayı anlattı. kısa bişey
+başka bi zaman netstat -tupln  dedi, sadece udp çıktı. aa tor çalışmıyo filan dedi. sonra şunu yazdı: nohup tor &
+sonra sadece nohup yazdı ve ardından ctrl+c yaptı. sonra netstat -tupln deyince torun çalıştığını gördü
+# ipconfig'te 192.168.43.15 ama r = requests.get("http://icanhazip.com").content farklı sonuç verdi: b'37.155.23.117\n' ???
+sudo nano /etc/proxychains.conf yazdı. ordaki dynamic'teki #'i kaldırdı, static'e ekledi
+değişik proxy çeşitleri var:
+HTTP: bir webbrowser'la bunu kullanırsan ondan data talep ettiğin server http proxy'nin ip'sini elde eder, not your ip address
+SOCKS4: covers a lot of different protocols. not do udp. covering multiple protocols konsunda SOCKS5 gibi
+SOCKS5: the most secure way to go. covers any usable protocols that we're gonna be using
+3.22.30'da komedi var
+dns data can reduce your anonymity. because certain info about your dns is revealed to the server. so by using a proxy_dns setting 
+here, that's going to make no leaks from the dns server settings. (demekki proxy_dns amacımıza hizmet eden bişey)
+o conf dosyasında en alta (socks4'ün altına) 127'li adresi yazdı ve dedi "bu local host adres which is always 127..."
+fg yazdı
+ps aux | grep "nano" ile nano'nun çalışıp çalışmadığını gördü. ve id'sini  kullanarak end etti: sudo kill 9 1367 (burda id'si 1367)
+ama no process filan dedi. aaaa. üst satırda yanlış yapmışız. çünkü o çalışan olarak gördüğümüz process grep'miş. :))
+"o id'de çalışan bi process yok" dedi çünkü grep çalıştı ve kapandı
+now, how to use proxychains with firefox: proxychains firefox
+all the network activity for firefox should route through the proxychain that we configured which uses tor
+firefox'a icanhazip.com yazdı ama bağlanmadı. preferences'a girdi. manual proxy configuration seçeneğinin seçili olduğunu gördü. onu
+"use system proxy settings" yaptı. düzeldi. ip adresini gördü "that is most definitely not mine" dedi
+terminalde çalışan proxychains firefox komutunu ctrl+c ile iptal edip tekrar firefox'tan icanhazip'ye girdi ve bu sefer normal ip
+demekki you no longer have to use tor browser. it's just a browser.
+for proxy chains we can run different programs
+terminale proxychains curl http://icanhazip.com yazdı response aldı. ip'yi de gördü
+curl http://icanhazip.com yazıca regular ip'yi aldı
+it will protect your identity a little more: socks-proxy.net'e girdi. sudo nano /etc/proxychains.conf'nin en altına o sayfanın ilk
+adresini ekledi. tekrar çalıştırdı: proxychains curl http://icanhazip.com bu daha uzun sürdü çünkü point a'dan b'ye olan daha uzun bir
+route oluşturomuş. protection layerlar artıyomuş. slow olmasının muhtemel nedeni: free olması, o yüzden çok kullanılıyo
+bir sonrkai vidyo: actual hacking, how to scan vulnerable website, and find vulnerabilities
+let's talk about macchanger, which can improve anonymity online.
+ifconfig yazdı nedense çalışmadı, sonra /sbin/ifconfig yazınca oldu. sonra sudo ile beraber yazınca da oldu. benim de aklıma gelmişti
+mac is the id of the hardware. network'ta seni tanımlamak için kullanılabilir. servers can get your hardware address
+bişeyler söyledi anlamadım, ama şuydu sanki: tor ile ip'ni saklayabilirsin ama mac'ini saklamazsan bulunabilirsin.
+macchanger --help'e baktı. macchanger -s eth0
+sudo macchanger -r eth0 ile yeni mac üretti ve current olanı değiştirdi
+we're gonna hack sql servers through a technique called sql injection
+şöyle bişey anladım: website yapıcaz sonra onu hacklicez
+sudo apt-get install apache2
+apt-get policy php7.0 dedi ve already installed olduğunu gördü. sonra apt-get policy php7.0-mysql hakeza
+şimdi apache server'i başlatalım: sudo systemctl start apache2. sonra webbrowser'a gitti localhost yazdı bişey olmadı, 127.0.0.1 yazdı
+yine olmadı. sonra http://localhost yazınca oldu ama yavaş oldu
+firefox -> preferences -> advanced -> network -> settings -> no proxy deyince a lot faster oldu
+cd /var/www/html -> ls deyince içinde index.html olduğunu gördük. sonra touch ab.html dedik
+user nick'ti, sürekli sudo dememek için ownership'i değiştirdi: cd .. -> sudo chown nick:nick html -R (recursive)
+sudo nano /etc/apache2/envvars: export APACHE_RUN_USER=www-data satırında ='den sonrasını nick ile değiştridi. alttaki satır da hakeza
+linux'ta bir user oluştruduğunda aynı isimde bir gruo da aoluşturulur 
+"service apache2 restart" çalışabilir [sudo ile] ama şimdi sudo systemctl restart apache2
+webbrowser'ı refresh etti ve hala oraya access'inin olduğunu gördü
+cd html. artık we also have a write access in this directory, and that's awesome. dedi
+nano test.php
+if php is configured for apache, we should be able to access it in our browser. dedi. ama baktı çalışmıyo. klasördeki diğer html'ler
+de çalışmıyo. sonra sudo systemctl restart apache2. şimdi oldu.
+we're now gonna set up database
+php-myadmin is a graphical tool that we can access through the web browser to built databases
+sudo apt-get install phpmyadmin
+hata verdi.
+sudo systemctl start mysql dedi. duruma şöyle bakabilirmişiz: sudo systemctl status mysql
+let's reconfigure: sudo dpkg-reconfigure phpmyadmin -> hepsine evet veya ok dedi
+cd /etc/apache2 -> ls -> sudo nano apache2.conf -> en altına şunu ekledi: Include /etc/phpmyadmin/apache2.conf
+sudo systemctl restart apache2 -> şimdi we should be able to access localhost//phpmyadmin
+kullanıcı adı ve şifre kısmına phpmyadmin ve -sanırım- password yazdı
+sayfa açılınca -> home -> Databases -> no privilages -> let's figure it out
+stackoverflow'dan baktı, logged out -> logged in with root without a password ->  ama olmadı
+cd /etc/phpmyadmin -> ls -> sudo nano config.inc.php 
+ctrl+c -> AllowNo -> uncomment that row -> sudo systemctl restart apache2 -> yine olmadı
+yine ->  sudo nano config.inc.php
+
+
+
+
